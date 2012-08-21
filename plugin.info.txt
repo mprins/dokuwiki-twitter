@@ -1,0 +1,7 @@
+base    twitter
+author  Christoph Lang
+email   calbity@gmx.de
+date    2012-08-21
+name    Twitter Plugin
+desc    Show Tweets from Twitter
+url     https://www.dokuwiki.org/plugin:twitter
