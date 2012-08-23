@@ -70,7 +70,8 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 				}
 			}
 			$sResponse .= '<tr class="twtRow">';
-			$sResponse .= '  <td class="twtImage"><img width="48" src="'.$image.'" alt="'.$from.'"/></td>';
+			//$sResponse .= '  <td class="twtImage"><img width="48" src="'.$image.'" alt="'.$from.' avatar"/></td>';
+			$sResponse .= '  <td class="twtImage">'.p_render('xhtml', p_get_instructions('{{'.$image.'?48&nolink&recache|'.$from.' avatar}}'), $info).'</td>';
 			$sResponse .= '  <td class="twtMsg">'.$text.'<br/>'.sprintf($this->getLang('timestamp'),$time).' <a class="urlextern" target="_blank" href="http://twitter.com/'.$from.'">'.$from. $name.'</a></td>';
 			$sResponse .= '</tr>';
 		}
