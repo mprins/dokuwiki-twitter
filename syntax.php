@@ -194,8 +194,8 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 			} else {
 				$number = "?count=".$this->getConf('maxresults');
 			}
-			$json=$this->getData("http://twitter.com/statuses/user_timeline/".$data[2].".json".$number);
-		}
+            $json=$this->getData("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=".$data[2]."&count=".$this->getConf('maxresults'));
+        }
 		$decode = json_decode ( $json );
 		if(isset($decode->results)) {
 			return array($decode->results,$this->getLang('results')." ".str_replace("%20"," and ",$data[2]));
