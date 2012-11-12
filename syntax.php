@@ -19,6 +19,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	private function replace($data) {
 		$sResponse = '<div class="twtWrapper">';
 		//$sResponse .= '<div class="twtHeader">'.$data[1].'</div>';
+		$sTitle = $data[1];
 		$data = $data[0];
 
 		if(!isset($data)){
@@ -26,7 +27,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		}
 		$sResponse .= '<table class="twtEntries" >';
 		$sResponse .= '<caption class="twtHeader">';
-		$sResponse .= $this->getLang('header').' <a class="urlextern" target="_blank" href="http://twitter.com/' . $data[1] . '">@'.$data[1].'</a>';
+		$sResponse .= $sTitle;
 		$sResponse .= '</caption>';
 
 		foreach($data as $entry){
@@ -119,7 +120,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		$chunks =$chunks_en;
 		}
 		*/
-		// This is a HACK, it may break at some stage when there is type checking and getLang stich to the contract
+		// This is a HACK, it may break at some stage when there is type checking and getLang sticks to the contract
 		// for now getLang() will return anything
 		$chunks = $this->getLang('timechunks');
 
@@ -203,7 +204,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		if(isset($decode->results)) {
 			return array($decode->results,$this->getLang('results')." ".str_replace("%20"," and ",$data[2]));
 		}
-		return array($decode, " ".$data[2]);
+		return array($decode,$this->getLang('header').' <a class="urlextern" target="_blank" href="http://twitter.com/' .$data[2]. '">@'.$data[2].'</a>');
 	}
 
 	/**
@@ -211,6 +212,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	 * @param String $url
 	 */
 	private function getData($url){
+		dbglog($url, "Getting url from Twitter");
 		$json;
 		if ($this->getConf('useCURL')){
 			$ch = curl_init();
