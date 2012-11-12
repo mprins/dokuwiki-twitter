@@ -18,13 +18,16 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 
 	private function replace($data) {
 		$sResponse = '<div class="twtWrapper">';
-		$sResponse .= '<div class="twtHeader">'.$data[1].'</div>';
+		//$sResponse .= '<div class="twtHeader">'.$data[1].'</div>';
 		$data = $data[0];
 
 		if(!isset($data)){
-			return $sResponse.'<div class="error">Twitter is down....</div>';
+			return $sResponse.'<div class="error">Twitter is down....</div></div>';
 		}
 		$sResponse .= '<table class="twtEntries" >';
+		$sResponse .= '<caption class="twtHeader">';
+		$sResponse .= $this->getLang('header').' <a class="urlextern" target="_blank" href="http://twitter.com/' . $data[1] . '">@'.$data[1].'</a>';
+		$sResponse .= '</caption>';
 
 		foreach($data as $entry){
 			$text=$entry->text." ";
@@ -194,13 +197,13 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 			} else {
 				$number = "?count=".$this->getConf('maxresults');
 			}
-            $json=$this->getData("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=".$data[2]."&count=".$this->getConf('maxresults'));
-        }
+			$json=$this->getData("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=".$data[2]."&count=".$this->getConf('maxresults'));
+		}
 		$decode = json_decode ( $json );
 		if(isset($decode->results)) {
 			return array($decode->results,$this->getLang('results')." ".str_replace("%20"," and ",$data[2]));
 		}
-		return array($decode,$this->getLang('header')." ".$data[2]);
+		return array($decode, " ".$data[2]);
 	}
 
 	/**
