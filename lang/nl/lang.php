@@ -8,8 +8,8 @@
 * Copyright (c) 2012 Mark C. Prins <mprins@users.sf.net>
 *
 */
-$lang['header']  = 'Tijdlijn van:';
-$lang['results'] = 'Zoekresultaten van: ';
+$lang['header']  = 'Tijdlijn van';
+$lang['results'] = 'Zoekresultaten van:';
 $lang['timestamp'] = 'Ongeveer %s geleden door';
 $lang['timechunks'] =  array(
 		array(60 * 60 * 24 * 365 , 'jaar', 'jaren'),

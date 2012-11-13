@@ -8,7 +8,7 @@
 * Copyright (c) 2012 Mark C. Prins <mprins@users.sf.net>
 *
 */
-$lang['header']  = 'Timeline from';
+$lang['header']  = 'Timeline of';
 $lang['results'] = 'Results for search:';
 $lang['timestamp'] = 'About %s ago from';
 $lang['timechunks'] = array(

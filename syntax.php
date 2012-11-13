@@ -18,13 +18,16 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 
 	private function replace($data) {
 		$sResponse = '<div class="twtWrapper">';
-		$sResponse .= '<div class="twtHeader">'.$data[1].'</div>';
+		$sTitle = $data[1];
 		$data = $data[0];
 
 		if(!isset($data)){
-			return $sResponse.'<div class="error">Twitter is down....</div>';
+			return $sResponse.'<div class="error">Twitter is down....</div></div>';
 		}
 		$sResponse .= '<table class="twtEntries" >';
+		$sResponse .= '<caption class="twtHeader">';
+		$sResponse .= $sTitle;
+		$sResponse .= '</caption>';
 
 		foreach($data as $entry){
 			$text=$entry->text." ";
@@ -71,7 +74,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 			}
 			$sResponse .= '<tr class="twtRow">';
 			//$sResponse .= '  <td class="twtImage"><img width="48" src="'.$image.'" alt="'.$from.' avatar"/></td>';
-			$sResponse .= '  <td class="twtImage">'.p_render('xhtml', p_get_instructions('{{'.$image.'?48&nolink&recache|'.$from.' avatar}}'), $info).'</td>';
+			$sResponse .= '  <td class="twtImage">'.p_render('xhtml', p_get_instructions('{{'.$image.'?48&nolink|'.$from.' avatar}}'), $info).'</td>';
 			$sResponse .= '  <td class="twtMsg">'.$text.'<br/>'.sprintf($this->getLang('timestamp'),$time).' <a class="urlextern" target="_blank" href="http://twitter.com/'.$from.'">'.$from. $name.'</a></td>';
 			$sResponse .= '</tr>';
 		}
@@ -80,43 +83,14 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	}
 
 	/**
-	 *  Works out the time since the entry post, takes a an argument in unix time (seconds).
+	 * Works out the time since the entry post, takes a an argument in unix time (seconds).
+	 *
 	 * @param numeric $original unix time (seconds)
 	 * @return string
 	 */
 	public function Timesince($original) {
 		global $conf;
-		/*
-		 $chunks_en = array(
-		 		array(60 * 60 * 24 * 365 , 'year', 'years'),
-		 		array(60 * 60 * 24 * 30 , 'month', 'months'),
-		 		array(60 * 60 * 24 * 7, 'week', 'weeks'),
-		 		array(60 * 60 * 24 , 'day', 'days'),
-		 		array(60 * 60 , 'hour', 'hours'),
-		 		array(60 , 'min', 'mins'),
-		 		array(1 , 'sec', 'secs'),
-		 );
-
-		$chunks_nl = array(
-				array(60 * 60 * 24 * 365 , 'jaar', 'jaren'),
-				array(60 * 60 * 24 * 30 , 'maand', 'maanden'),
-				array(60 * 60 * 24 * 7, 'week', 'weken'),
-				array(60 * 60 * 24 , 'dag', 'dagen'),
-				array(60 * 60 , 'uur', 'uren'),
-				array(60 , 'min', 'min'),
-				array(1 , 'sec', 'sec'),
-		);
-
-		switch ( $conf['lang']){
-		case 'nl':
-		$chunks =$chunks_nl;
-		break;
-		case 'en':
-		default:
-		$chunks =$chunks_en;
-		}
-		*/
-		// This is a HACK, it may break at some stage when there is type checking and getLang stich to the contract
+		// This is a HACK, it may break at some stage when there is type checking and getLang sticks to the contract
 		// for now getLang() will return anything
 		$chunks = $this->getLang('timechunks');
 
@@ -150,6 +124,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	/**
 	 * Syntax patterns.
 	 * (non-PHPdoc)
+	 *
 	 * @see Doku_Parser_Mode::connectTo()
 	 */
 	function connectTo($mode) {
@@ -159,8 +134,10 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		$this->Lexer->addSpecialPattern('\[TWITTER\:SEARCH\:.*?\]', $mode, 'plugin_twitter');
 		$this->Lexer->addSpecialPattern('{{twitter>search\:.*?}}', $mode, 'plugin_twitter');
 	}
+
 	/**
 	 * (non-PHPdoc)
+	 *
 	 * @see DokuWiki_Syntax_Plugin::getType()
 	 */
 	function getType() {
@@ -168,19 +145,37 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	}
 	/**
 	 * (non-PHPdoc)
+	 *
 	 * @see Doku_Parser_Mode::getSort()
 	 */
 	function getSort() {
 		return 314;
 	}
+
+	/**
+	 * Paragraph Type.
+	 *
+	 * Defines how this syntax is handled regarding paragraphs. This is important
+	 * for correct XHTML nesting. Should return one of the following:
+	 *
+	 * 'normal' - The plugin can be used inside paragraphs
+	 * 'block'  - Open paragraphs need to be closed before plugin output
+	 * 'stack'  - Special case. Plugin wraps other paragraphs.
+	 *
+	 * @see Doku_Handler_Block::getPType()
+	 */
+	function getPType() {
+		return 'block';
+	}
+
 	/**
 	 * (non-PHPdoc)
+	 *
 	 * @see DokuWiki_Syntax_Plugin::handle()
 	 */
 	function handle($match, $state, $pos, &$handler) {
 		global $conf;
 		$match = str_replace(array(">","{{","}}"),array(":","[","]"),$match);
-
 		$match = substr($match,1,-1);
 		$data = explode(":",$match);
 
@@ -194,13 +189,13 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 			} else {
 				$number = "?count=".$this->getConf('maxresults');
 			}
-            $json=$this->getData("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=".$data[2]."&count=".$this->getConf('maxresults'));
-        }
+			$json=$this->getData("http://api.twitter.com/1/statuses/user_timeline.json?screen_name=".$data[2]."&count=".$this->getConf('maxresults'));
+		}
 		$decode = json_decode ( $json );
 		if(isset($decode->results)) {
 			return array($decode->results,$this->getLang('results')." ".str_replace("%20"," and ",$data[2]));
 		}
-		return array($decode,$this->getLang('header')." ".$data[2]);
+		return array($decode,$this->getLang('header').' <a class="urlextern" target="_blank" href="http://twitter.com/' .$data[2]. '">@'.$data[2].'</a>');
 	}
 
 	/**
@@ -208,6 +203,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	 * @param String $url
 	 */
 	private function getData($url){
+		dbglog($url, "Getting url from Twitter");
 		$json;
 		if ($this->getConf('useCURL')){
 			$ch = curl_init();
@@ -231,6 +227,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 
 	/**
 	 * (non-PHPdoc)
+	 *
 	 * @see DokuWiki_Syntax_Plugin::render()
 	 */
 	function render($mode, &$renderer, $data) {
