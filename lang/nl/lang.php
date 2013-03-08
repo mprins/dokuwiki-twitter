@@ -5,7 +5,7 @@
 * @license GPL 2 (http://opensource.org/licenses/gpl-2.0.php)
 * @author  Mark C. Prins <mprins@users.sf.net>
 *
-* Copyright (c) 2012 Mark C. Prins <mprins@users.sf.net>
+* Copyright (c) 2012-2013 Mark C. Prins <mprins@users.sf.net>
 *
 */
 $lang['header']  = 'Tijdlijn van';
