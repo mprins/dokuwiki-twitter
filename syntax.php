@@ -34,7 +34,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		}
 		$sResponse .= '<table class="twtEntries" >';
 		$sResponse .= '<caption class="twtHeader">';
-		$sResponse .= '<img class="twtLogo" src="' . DOKU_BASE . 'lib/plugins/' . $this->getPluginName() . '/bird_blue_32.png" alt="">';
+		$sResponse .= '<img class="twtLogo" src="' . DOKU_BASE . 'lib/plugins/' . $this->getPluginName() . '/bird_blue_32.png" alt=""/>';
 		$sResponse .= $sTitle;
 		$sResponse .= '</caption>';
 
