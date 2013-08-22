@@ -6,11 +6,6 @@ if (! defined ( 'DOKU_PLUGIN' ))
 require_once (DOKU_PLUGIN . 'syntax.php');
 
 /**
- *
- *
- *
- *
- *
  * Twitter syntax plugin.
  *
  * @license GPL 2 (http://opensource.org/licenses/gpl-2.0.php)
@@ -29,6 +24,10 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		$sResponse = '<div class="twtWrapper">';
 		if (! isset ( $data )) {
 			return $sResponse . '<div class="error">Twitter error....</div></div>';
+		}
+		// dbglog($data->errors,"error data");
+		if (is_array ( $data->errors )) {
+			return $sResponse . '<div class="error">Twitter error...<br />' . $data->errors [0]->code . ': ' . $data->errors [0]->message . '</div></div>';
 		}
 
 		$sResponse .= '<table class="twtEntries" >';
