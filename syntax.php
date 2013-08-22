@@ -71,7 +71,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 			// get hashtags
 			if (preg_match_all('/#(.*?)\s/', $text, $arMatches)) {
 				for ($i = 0; $i < count($arMatches[0]); $i++) {
-					$text = str_replace($arMatches[0][$i], '<a class="urlextern" target="_blank" href="https://search.twitter.com/search?q=' . $arMatches[1][$i] . '">' . $arMatches[0][$i] . "</a>", $text);
+					$text = str_replace($arMatches[0][$i], '<a class="urlextern" target="_blank" href="https://twitter.com/search?q=' . $arMatches[1][$i] . '">' . $arMatches[0][$i] . "</a>", $text);
 				}
 			}
 
