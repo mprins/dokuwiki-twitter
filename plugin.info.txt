@@ -1,7 +1,7 @@
 base    twitter
 author  Mark C. Prins
 email   mprins@users.sf.net
-date    2013-03-08
+date    2013-08-23
 name    Twitter Plugin
 desc    Show tweets from Twitter
 url     http://www.dokuwiki.org/plugin:twitter
