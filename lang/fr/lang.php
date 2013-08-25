@@ -1,12 +1,12 @@
 <?php
 /**
- * English language file for twitter plugin.
+ * French language file for twitter plugin.
  *
  * @license GPL 2 (http://opensource.org/licenses/gpl-2.0.php)
  * @author  Mark C. Prins <mprins@users.sf.net>
  * @author  Damien Clochard <damien@dalibo.info>
  * 
- * @copyright Copyright (c) 2012-2013 Mark C. Prins <mprins@users.sf.net>
+ * @copyright Copyright (c) 2013 Mark C. Prins <mprins@users.sf.net>
  *
  */
 $lang ['header'] = 'Timeline de';
