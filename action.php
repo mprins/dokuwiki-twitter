@@ -32,7 +32,7 @@ class action_plugin_twitter extends DokuWiki_Action_Plugin {
 	 * prepare the cache object for default _useCache action
 	 */
 	function _cache_prepare($event, $param) {
-		$cache = & $event->data;
+		$cache =& $event->data;
 
 		// we're only interested in wiki pages and supported render modes
 		if (!isset($cache->page)) {
