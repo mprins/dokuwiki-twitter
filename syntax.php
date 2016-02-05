@@ -200,7 +200,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	 *
 	 * @see DokuWiki_Syntax_Plugin::handle()
 	 */
-	function handle($match, $state, $pos, Doku_Handler &$handler) {
+	function handle($match, $state, $pos, Doku_Handler $handler) {
 		global $conf;
 		$match = str_replace(array(
 			">",
@@ -292,7 +292,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	 *
 	 * @see DokuWiki_Syntax_Plugin::render()
 	 */
-	function render($mode, &$renderer, $data) {
+	function render($mode, Doku_Renderer $renderer, $data) {
 		if ($mode == 'xhtml') {
 			// prevent caching to ensure content is always fresh
 			$renderer->info ['cache'] = false;
