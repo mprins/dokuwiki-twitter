@@ -81,7 +81,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 			}
 
 			// get twitterer
-			if (preg_match_all('/@(.*?)\s/', $text, $arMatches)) {
+			if (preg_match_all('/(^| )@(.*?)\s/', $text, $arMatches)) {
 				for ($i = 0; $i < count($arMatches [0]); $i ++) {
 					$strTwitterer = preg_replace('/\W/', '', $arMatches [0] [$i]);
 					$text = str_replace($strTwitterer, '<a class="urlextern" target="_blank" href="https://twitter.com/' . $strTwitterer . '">' . $strTwitterer . "</a>", $text);
