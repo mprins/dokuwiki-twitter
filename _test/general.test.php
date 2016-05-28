@@ -52,7 +52,7 @@ class general_plugin_twitter_test extends DokuWikiTest {
     /**
      * test if plugin is loaded.
      */
-    public function test_plugin_backlinks_isloaded() {
+    public function test_plugin_twitter_isloaded() {
         global $plugin_controller;
         $this->assertTrue(
                    in_array('twitter', $plugin_controller->getList()),
