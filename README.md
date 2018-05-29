@@ -2,7 +2,7 @@
 
 This syntax plugin will enable users to put tweets and searches from twitter on a page. It uses the media cache thereby bypassing twitter's tracking cookies and complying with EU privacy guidelines.
 
-This is based in part on the code at https://www.dokuwiki.org/plugin:twitter
+This is based in part on the code from https://www.dokuwiki.org/plugin:twitter
 
 Please see the LICENSE file for the GPL 2 license.
 
