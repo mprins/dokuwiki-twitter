@@ -7,7 +7,7 @@ This is based in part on the code from https://www.dokuwiki.org/plugin:twitter
 Please see the LICENSE file for the GPL 2 license.
 
 
-[![Build Status](https://travis-ci.org/mprins/dokuwiki-twitter.svg?branch=testing)](https://travis-ci.org/mprins/dokuwiki-twitter)
+[![Build Status](https://travis-ci.com/mprins/dokuwiki-twitter.svg?branch=master)](https://travis-ci.com/mprins/dokuwiki-twitter)
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/mprins/dokuwiki-twitter/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/mprins/dokuwiki-twitter/?branch=master)
 [![GitHub issues](https://img.shields.io/github/issues/mprins/dokuwiki-twitter.svg)](https://github.com/mprins/dokuwiki-twitter/issues)
 [![GitHub forks](https://img.shields.io/github/forks/mprins/dokuwiki-twitter.svg)](https://github.com/mprins/dokuwiki-twitter/network)
