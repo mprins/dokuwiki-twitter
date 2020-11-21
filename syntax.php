@@ -104,10 +104,43 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	 * @return string
 	 */
 	public function Timesince($original) {
-		global $conf;
-		// This is a HACK, it may break at some stage when there is type checking
-		// and getLang sticks to the contract for now getLang() will return anything
-		$chunks = $this->getLang('timechunks');
+        $chunks = [
+            [
+                60 * 60 * 24 * 365,
+                $this->getLang('year'),
+                $this->getLang('years')
+            ],
+            [
+                60 * 60 * 24 * 30,
+                $this->getLang('month'),
+                $this->getLang('months')
+            ],
+            [
+                60 * 60 * 24 * 7,
+                $this->getLang('week'),
+                $this->getLang('weeks')
+            ],
+            [
+                60 * 60 * 24,
+                $this->getLang('day'),
+                $this->getLang('days')
+            ],
+            [
+                60 * 60,
+                $this->getLang('hour'),
+                $this->getLang('hours')
+            ],
+            [
+                60,
+                $this->getLang('min'),
+                $this->getLang('mins')
+            ],
+            [
+                1,
+                $this->getLang('sec'),
+                $this->getLang('secs')
+            ]
+        ];
 
 		$today = time(); /* Current unix time */
 		$since = $today - $original;

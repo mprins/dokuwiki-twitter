@@ -7,44 +7,21 @@
  * @copyright Copyright (c) 2012-2013 Mark C. Prins <mprins@users.sf.net>
  *
  */
-$lang ['header'] = 'Tijdlijn van';
-$lang ['results'] = 'Zoekresultaten van:';
-$lang ['timestamp'] = 'Ongeveer %s geleden door';
-$lang ['timechunks'] = array (
-		array (
-				60 * 60 * 24 * 365,
-				'jaar',
-				'jaren'
-		),
-		array (
-				60 * 60 * 24 * 30,
-				'maand',
-				'maanden'
-		),
-		array (
-				60 * 60 * 24 * 7,
-				'week',
-				'weken'
-		),
-		array (
-				60 * 60 * 24,
-				'dag',
-				'dagen'
-		),
-		array (
-				60 * 60,
-				'uur',
-				'uren'
-		),
-		array (
-				60,
-				'min',
-				'min'
-		),
-		array (
-				1,
-				'sec',
-				'sec'
-		)
-);
-$lang ['configerror'] = 'De waarden van "oauth_consumer_key", "oauth_consumer_secret", "oauth_token" en "oauth_token_secret" moeten gevuld zijn om geauthenticeerde verzoeken te versturen.';
+$lang['header'] = 'Tijdlijn van';
+$lang['results'] = 'Zoekresultaten van:';
+$lang['timestamp'] = 'Ongeveer %s geleden door';
+$lang['year'] = 'jaar';
+$lang['years'] = 'jaren';
+$lang['month'] = 'maand';
+$lang['months'] = 'maanden';
+$lang['week'] = 'week';
+$lang['weeks'] = 'weken';
+$lang['day'] = 'dag';
+$lang['days'] = 'dagen';
+$lang['hour'] = 'uur';
+$lang['hours'] = 'uren';
+$lang['min'] = 'min';
+$lang['mins'] = 'min';
+$lang['sec'] = 'sec';
+$lang['secs'] = 'sec';
+$lang['configerror'] = 'De waarden van "oauth_consumer_key", "oauth_consumer_secret", "oauth_token" en "oauth_token_secret" moeten gevuld zijn om geauthenticeerde verzoeken te versturen.';
