@@ -6,13 +6,6 @@
  * @author Christoph Lang <calbity@gmx.de>
  * @author Mark C. Prins <mprins@users.sf.net>
  */
-if (!defined('DOKU_INC')) {
-	die();
-}
-if (!defined('DOKU_PLUGIN')) {
-	define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
-}
-require_once (DOKU_PLUGIN . 'syntax.php');
 
 /**
  * Twitter Plugin Syntax plugin component.
@@ -99,8 +92,7 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	/**
 	 * Works out the time since the entry post, takes a an argument in unix time (seconds).
 	 *
-	 * @param numeric $original
-	 *        	unix time (seconds)
+	 * @param int $original    	unix time (seconds)
 	 * @return string
 	 */
 	public function Timesince($original) {
@@ -234,7 +226,6 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 	 * @see DokuWiki_Syntax_Plugin::handle()
 	 */
 	function handle($match, $state, $pos, Doku_Handler $handler) {
-		global $conf;
 		$match = str_replace(array(
 			">",
 			"{{",
@@ -287,15 +278,15 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		);
 	}
 
-	/**
-	 * get the data from twitter using either cURL or file_get_contents.
-	 *
-	 * @param String $url
-	 */
+    /**
+     * get the data from twitter using either cURL or file_get_contents.
+     *
+     * @param String $url
+     * @return bool|string
+     */
 	private function getData($url, $param) {
 		// dbglog($url, "Getting url from Twitter");
-		$json;
-		if ($this->getConf('useCURL')) {
+        if ($this->getConf('useCURL')) {
 			$ch = curl_init();
 			curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
 			curl_setopt($ch, CURLOPT_USERAGENT, 'Mozilla/4.0 (compatible; DokuWiki HTTP Client; ' . PHP_OS . ')');
@@ -339,16 +330,14 @@ class syntax_plugin_twitter extends DokuWiki_Syntax_Plugin {
 		return false;
 	}
 
-	/**
-	 * Generates the OAuth signed request url.
-	 *
-	 * @param string $endpointUrl
-	 *        	The API endpoint to call
-	 * @param
-	 *        	array optional $params The API call parameters, associative
-	 *
-	 * @return string The signed API endpoint call including the parameters
-	 */
+    /**
+     * Generates the OAuth signed request url.
+     *
+     * @param string $endpointUrl
+     *            The API endpoint to call
+     * @param array $params
+     * @return string The signed API endpoint call including the parameters
+     */
 	private function signRequest($endpointUrl, $params = array()) {
 		$sign_params = array(
 			'oauth_consumer_key' => $this->_oauth_consumer_key,
