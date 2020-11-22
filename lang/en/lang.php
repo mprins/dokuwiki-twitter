@@ -8,44 +8,21 @@
  * @copyright Copyright (c) 2012-2013 Mark C. Prins <mprins@users.sf.net>
  *
  */
-$lang ['header'] = 'Timeline of';
-$lang ['results'] = 'Results for search:';
-$lang ['timestamp'] = 'About %s ago by:';
-$lang ['timechunks'] = array (
-		array (
-				60 * 60 * 24 * 365,
-				'year',
-				'years'
-		),
-		array (
-				60 * 60 * 24 * 30,
-				'month',
-				'months'
-		),
-		array (
-				60 * 60 * 24 * 7,
-				'week',
-				'weeks'
-		),
-		array (
-				60 * 60 * 24,
-				'day',
-				'days'
-		),
-		array (
-				60 * 60,
-				'hour',
-				'hours'
-		),
-		array (
-				60,
-				'min',
-				'mins'
-		),
-		array (
-				1,
-				'sec',
-				'secs'
-		)
-);
-$lang ['configerror'] = 'The values of "oauth_consumer_key", "oauth_consumer_secret", "oauth_token" and "oauth_token_secret" must be set to generate authenticated requests.';
+$lang['header'] = 'Timeline of';
+$lang['results'] = 'Results for search:';
+$lang['timestamp'] = 'About %s ago by:';
+$lang['year'] = 'year';
+$lang['years'] = 'years';
+$lang['month'] = 'month';
+$lang['months'] = 'months';
+$lang['week'] = 'week';
+$lang['weeks'] = 'weeks';
+$lang['day'] = 'day';
+$lang['days'] = 'days';
+$lang['hour'] = 'hour';
+$lang['hours'] = 'hours';
+$lang['min'] = 'min';
+$lang['mins'] = 'mins';
+$lang['sec'] = 'sec';
+$lang['secs'] = 'secs';
+$lang['configerror'] = 'The values of "oauth_consumer_key", "oauth_consumer_secret", "oauth_token" and "oauth_token_secret" must be set to generate authenticated requests.';

@@ -7,13 +7,6 @@
  * @author Björn Kalkbrenner <terminar@cyberphoria.org> (rewritten for twitter plugin)
  * @author Mark C. Prins <mprins@users.sf.net>
  */
-if (!defined('DOKU_INC')) {
-	die();
-}
-if (!defined('DOKU_PLUGIN')) {
-	define('DOKU_PLUGIN', DOKU_INC . 'lib/plugins/');
-}
-require_once(DOKU_PLUGIN . 'action.php');
 
 /**
  * Twitter Plugin Action plugin component, for cache validity determination; based on the Source Plugin/Action scripts.
